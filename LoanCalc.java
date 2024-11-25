@@ -1,13 +1,13 @@
 // Computes the periodical payment necessary to pay a given loan.
 public class LoanCalc {
 	
-	static double epsilon = 0.01;  // Approximation accuracy
+	static double epsilon = 0.001;  // Approximation accuracy
 	static int iterationCounter = 0;    // Number of iterations 
 	
 	// Gets the loan data and computes the periodical payment.
     // Expects to get three command-line arguments: loan amount (double),
     // interest rate (double, as a percentage), and number of payments (int).  
-	public static void main(String[] args) {
+	public static void main(String[] args) {	
 		// Gets the loan data
 		
 		double loan = Double.parseDouble(args[0]);
@@ -49,10 +49,10 @@ public class LoanCalc {
     	double currentBalance = previousBalance;
 		int maxIterations = (int)Math.pow(loan, 2);
 
-    while ((currentBalance = endBalance(loan, rate, n, g)) > 0) {
+    while (endBalance(loan, rate, n, g) > 0) {
         if (previousBalance > 0 && currentBalance < -epsilon) {
             return g - epsilon;
-        }
+        }		
         previousBalance = currentBalance;
         g += epsilon;
         iterationCounter ++;
@@ -71,19 +71,19 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
 		iterationCounter = 0;
-		double L = 0.0;
-		double H = loan;
+		double L = loan / n;
+		double H = loan * (1 + rate / 100);
 		double g = (L + H) / 2.0;
 		double currentBalance = endBalance(loan, rate, n, g);
-		while (Math.abs(currentBalance) > epsilon){
+		while ((H - L) > epsilon) {			
 			if (currentBalance > 0) {
 				L = g;
 			} else {
 				H = g;
 			}
 			g = (L + H) / 2.0;
-			currentBalance = endBalance(loan, rate, n, g);
 			iterationCounter ++;
+			currentBalance = endBalance(loan, rate, n, g);
 		}
 		return g;
     } 
