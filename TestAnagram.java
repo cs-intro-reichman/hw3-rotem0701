@@ -31,7 +31,7 @@ public class TestAnagram {
         // Test case 5: Complex anagram with spaces
         boolean test5 = Anagram.isAnagram("William Shakespeare", "I am a weakish speller");
         System.out.println("Test 5 (complex anagram): " + (test5 ? "PASS" : "FAIL"));
-        
+
         // Test case 6: Case sensitivity
         boolean test6 = Anagram.isAnagram("Silent", "ListeN");
         System.out.println("Test 6 (case sensitivity): " + (test6 ? "PASS" : "FAIL"));

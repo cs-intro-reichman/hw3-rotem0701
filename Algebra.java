@@ -27,11 +27,11 @@
 		// Returns x1 + x2
 		public static int plus(int x1, int x2) {
 			int sum = x1;
-			while (x2 > 0){
+			while (x2 > 0) {
 				sum ++;
 				x2 --;
 			}
-			while (x2 < 0){
+			while (x2 < 0) {
 				sum --;
 				x2 ++;
 			}
@@ -41,11 +41,11 @@
 		// Returns x1 - x2
 		public static int minus(int x1, int x2) {
 			int sum = x1;
-			while (x2 > 0){
+			while (x2 > 0) {
 				sum --;
 				x2 --;
 			}
-			while (x2 < 0){
+			while (x2 < 0) {
 				sum ++;
 				x2 ++;
 			}
@@ -149,7 +149,8 @@
 			if (x == 0 || x == 1) {
 				return x;
 			}
-			int L = 0, H = x;
+			int L = 0;
+			int H = x;
 			int g = 0;
 			int prevG = 0;
 
